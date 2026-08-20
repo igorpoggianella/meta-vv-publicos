@@ -5,7 +5,9 @@
 Scripts standalone que criam **públicos de engajamento por retenção de vídeo** na
 Meta, prontos pra usar como público quente ou seed de lookalike.
 
-Só precisa de Python 3.9+ (sem instalar biblioteca nenhuma).
+Só precisa de Python 3.9+ (sem instalar biblioteca nenhuma). Funciona na mão ou
+como **skill do [Claude Code](https://claude.com/claude-code)** — clonou dentro de
+`~/.claude/skills/`, o Claude assume a conversa (vem com `SKILL.md`).
 
 ## Que públicos dá pra criar?
 
@@ -39,16 +41,40 @@ O nome carrega o recorte inteiro, então dá pra identificar o público no
 Gerenciador sem abrir a descrição — e a descrição ainda registra quantos vídeos
 entraram, de quais perfis/campanha e a janela.
 
-## Setup (5 min)
+## Instalação (5 min)
 
-1. Tenha um **token da Meta** com as permissões:
-   `ads_management`, `business_management`, `pages_show_list`,
-   `pages_read_engagement`, `instagram_basic`, `instagram_manage_insights`.
-   (Recomendado: system user no Business Manager com acesso às páginas e às
-   contas de anúncio. Pra testar, o Graph API Explorer também serve.)
-2. O Instagram precisa ser **conta profissional vinculada a uma página** de
-   Facebook que o token administra.
-3. Copie `.env.example` para `.env` e preencha o `META_TOKEN`.
+```bash
+git clone https://github.com/igorpoggianella/meta-vv-publicos.git
+cd meta-vv-publicos
+python setup.py
+```
+
+O `setup.py` é a instalação guiada: valida seu token na API, **lista suas contas
+de anúncio e páginas com Instagram** (pra você só copiar os `act_...`), avisa se
+falta permissão e cria o `.env`. Sem ele, dá pra fazer na mão: copie
+`.env.example` para `.env` e preencha o `META_TOKEN`.
+
+### Como skill do Claude Code
+
+Clone direto na pasta de skills:
+
+```bash
+git clone https://github.com/igorpoggianella/meta-vv-publicos.git ~/.claude/skills/meta-vv-publicos
+```
+
+Na próxima sessão é só pedir — *"cria um público de quem assistiu 75% dos vídeos
+da campanha X"* — que o `SKILL.md` guia o Claude: setup na primeira vez, sempre
+`--dry-run` antes, criação só depois do seu OK.
+
+### O token da Meta
+
+1. Permissões: `ads_management` (criar públicos) e, **só pro modo orgânico**,
+   `pages_show_list`, `pages_read_engagement`, `instagram_basic`,
+   `instagram_manage_insights` (+ `business_management` ajuda a enxergar os ativos).
+   Recomendado: system user no Business Manager com acesso às páginas e às contas
+   de anúncio. Pra testar, o Graph API Explorer também serve.
+2. Pro modo orgânico, o Instagram precisa ser **conta profissional vinculada a
+   uma página** de Facebook que o token administra.
 
 ## Uso
 
