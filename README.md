@@ -9,7 +9,7 @@ Só precisa de Python 3.9+ (sem instalar biblioteca nenhuma). Funciona na mão o
 como **skill do [Claude Code](https://claude.com/claude-code)** — clonou dentro de
 `~/.claude/skills/`, o Claude assume a conversa (vem com `SKILL.md`).
 
-## Que públicos dá pra criar?
+## Quais públicos dá para criar?
 
 Duas fontes de vídeo, mesma regra de engajamento:
 
